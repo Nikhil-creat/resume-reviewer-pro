@@ -50,3 +50,10 @@ Then open http://localhost:3000
 - Model used: `gemini-3.6-flash`. You can change this in `app/api/analyze/route.js` if needed.
 - Your API key stays server-side (inside `app/api/analyze/route.js`) — it is never exposed to the browser.
 - Free tier has rate limits — if you hit them, wait a bit or check quota at https://aistudio.google.com
+
+## 👤 Author
+
+**NIKHIL CHARY SRIRAMOJU**
+- GitHub: [@Nikhil-creat](https://github.com/Nikhil-creat)
+- LinkedIn: [nikhil-chary-sriramoju](https://in.linkedin.com/in/nikhil-chary-sriramoju-95041b38a)
+- Instagram: [@nikhil__sriramoju](https://www.instagram.com/nikhil__sriramoju?stkn=MTFxdDZobmJtb2RoaA==)
