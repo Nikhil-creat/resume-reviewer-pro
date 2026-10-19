@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resume Reviewer Pro — AI Resume Intelligence</title>
+<meta name="description" content="Live ATS score, keyword gaps, agentic AI rewrite, cover letter and interview prep. Built by Nikhil Chary Sriramoju.">
+<style>
+:root{--bg:#f6f7fb;--pn:#fff;--ln:#d8deec;--tx:#101728;--mu:#56627f;--am:#b86a00;--bl:#2d5be3;--rd:#c0392b;--gn:#1f7a56;--in:#eef1f8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0e17;--pn:#121826;--ln:#26324b;--tx:#e9edf6;--mu:#8b97b3;--am:#ffb347;--bl:#7aa2ff;--rd:#ff7a7a;--gn:#4fc59a;--in:#0d1322;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a0e17;--pn:#121826;--ln:#26324b;--tx:#e9edf6;--mu:#8b97b3;--am:#ffb347;--bl:#7aa2ff;--rd:#ff7a7a;--gn:#4fc59a;--in:#0d1322;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px))}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.w{max-width:1040px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.15;margin:0 0 12px}
+h1{font-size:clamp(32px,6.5vw,56px);font-weight:700;max-width:16ch}h2{font-size:clamp(24px,4vw,34px)}h3{font-size:18px}
+p{margin:0 0 12px}.mu{color:var(--mu)}a{color:var(--bl)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--ln)}
+.nav{display:flex;align-items:center;gap:14px;height:60px}.logo{font:700 18px Georgia,serif;color:var(--tx);text-decoration:none;margin-right:auto}
+.logo b{color:var(--am)}nav a{color:var(--mu);text-decoration:none;margin:0 8px;font-size:15px}nav a:hover{color:var(--tx)}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--pn);color:var(--tx);border-radius:8px;padding:9px 14px;min-height:40px}
+button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--bl);outline-offset:2px}
+.pri{background:var(--am);color:#fff;border-color:var(--am);font-weight:700}:root[data-theme="dark"] .pri{color:#1a1200}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .pri{color:#1a1200}}
+#mb{display:none}@media(max-width:760px){nav{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--ln);padding:8px 18px}nav.open{display:block}nav a{display:block;margin:0;padding:10px 0}#mb{display:inline-block}}
+.hero{padding:44px 0 20px}.hero p{max-width:56ch;font-size:18px}
+.tool{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin:22px 0}@media(max-width:860px){.tool{grid-template-columns:1fr}}
+.card{background:var(--pn);border:1px solid var(--ln);border-radius:12px;padding:16px}
+label{display:block;font-size:14px;color:var(--mu);margin:12px 0 6px}
+textarea,select,input[type=text],input[type=email]{width:100%;background:var(--in);color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:10px;font:inherit}
+textarea{min-height:170px;resize:vertical}#jd{min-height:100px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.row .pri{flex:1}
+.gauge{display:flex;align-items:center;gap:16px}.gauge svg{flex:none}
+.num{font:700 40px Georgia,serif}.bar{height:8px;background:var(--in);border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;transition:width .5s}
+.rw{display:flex;justify-content:space-between;font-size:14px;margin:10px 0 4px}
+.chip{display:inline-block;border:1px solid var(--ln);border-radius:99px;padding:3px 11px;margin:3px 3px 3px 0;font-size:14px;background:var(--in);color:var(--tx)}
+.ok{border-color:var(--gn)}.no{border-color:var(--rd);cursor:pointer}
+.fx{border-left:3px solid var(--am);padding:2px 0 2px 12px;margin:10px 0}.fx.h{border-color:var(--rd)}.fx.l{border-color:var(--gn)}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+section{padding:46px 0;border-top:1px solid var(--ln)}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;counter-reset:s}.st .card{counter-increment:s}.st h3::before{content:counter(s)".  ";color:var(--am)}
+details{border-bottom:1px solid var(--ln);padding:12px 0}summary{cursor:pointer;font-weight:600}
+#aiout{margin-top:14px}#aiout pre{white-space:pre-wrap;font:inherit;margin:0}
+.hist div{display:flex;justify-content:space-between;border-bottom:1px solid var(--ln);padding:6px 0;font-size:14px}
+footer{border-top:1px solid var(--ln);padding:32px 0 40px;background:var(--pn)}.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}@media(max-width:700px){.fg{grid-template-columns:1fr}}
+footer a{display:block;color:var(--mu);text-decoration:none;margin:6px 0}footer a:hover{color:var(--tx)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}.toast.on{opacity:1}
+@media print{header,footer,.tool .card:first-child,section:not(#results){display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="w nav">
+<a class="logo" href="#top">Resume Reviewer <b>Pro</b></a>
+<nav id="nav" aria-label="Main"><a href="#analyzer">Analyzer</a><a href="#letter">Cover letter</a><a href="#agents">Agents</a><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+<button id="th" aria-label="Toggle theme" title="Toggle theme">Theme</button>
+<button id="mb" aria-label="Menu" aria-expanded="false">Menu</button>
+</div></header>
+
+<main id="top">
+<div class="w hero">
+<h1>See your resume the way a recruiter’s filter does.</h1>
+<p class="mu">Paste your resume and a job description. The score updates as you type, with keyword gaps, specific fixes, and an optional agentic AI rewrite.</p>
+</div>
+
+<div class="w" id="analyzer">
+<div class="tool">
+<div class="card">
+<label for="rs">Resume text</label>
+<textarea id="rs" placeholder="Paste your resume here, or load a .txt, PDF or image below."></textarea>
+<label for="fl">Upload file (.docx and .txt fill the box; PDF and images are read by Deep AI)</label>
+<input id="fl" type="file" accept=".docx,.txt,.pdf,image/*">
+<label for="ro">Target role</label>
+<select id="ro"><option>Auto-detect</option><option>AI/ML Engineer</option><option>GenAI/LLM Engineer</option><option>Data Analyst</option><option>Data Engineer</option><option>Software Engineer</option><option>Cloud/DevOps</option></select>
+<label for="jd">Job description (optional, sharpens keyword match)</label>
+<textarea id="jd"></textarea>
+<div class="row"><button class="pri" id="run">Analyze resume</button><button id="ai">Deep AI analysis</button><button id="smp">Load sample</button><button id="clr">Clear</button></div>
+<p class="mu" id="msg" role="status" style="margin-top:10px;font-size:14px"></p>
+</div>
+<div class="card" id="results" aria-live="polite">
+<div class="gauge"><svg width="110" height="110" viewBox="0 0 110 110" aria-hidden="true"><circle cx="55" cy="55" r="46" fill="none" stroke="var(--in)" stroke-width="10"/><circle id="rg" cx="55" cy="55" r="46" fill="none" stroke="var(--am)" stroke-width="10" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" transform="rotate(-90 55 55)" style="transition:stroke-dashoffset .6s"/></svg>
+<div><div class="num" id="sc">–</div><div class="mu" id="vd">Start typing to see your score.</div></div></div>
+<div id="cats"></div>
+<h3 style="margin-top:16px">Keywords</h3><div id="kw" class="mu">Matched and missing keywords appear here. Tap a missing one to copy it.</div>
+<h3 style="margin-top:16px">Fixes</h3><div id="fx" class="mu">Specific fixes appear here.</div>
+<div class="row"><button id="cp">Copy report</button><button id="dl">Download</button><button id="pr">Save as PDF</button></div>
+</div>
+</div>
+<div id="aiout" class="card" hidden></div>
+<div class="card hist" style="margin-top:14px"><h3>Scan history on this device</h3><div id="hs" class="mu">No scans yet.</div><button id="hc" style="margin-top:10px">Clear history</button></div>
+</div>
+
+<section id="letter"><div class="w"><h2>Cover letter generator</h2><p class="mu">Uses the resume and job description above. The quick template works offline; AI writes a tailored letter on the deployed site.</p>
+<div class="card"><div class="g3"><div><label for="lc">Company</label><input type="text" id="lc"></div><div><label for="lr">Job title</label><input type="text" id="lr"></div><div><label for="lm">Hiring manager (optional)</label><input type="text" id="lm"></div></div>
+<div class="g3"><div><label for="lt">Tone</label><select id="lt"><option>Professional</option><option>Confident</option><option>Warm</option></select></div><div><label for="ll">Length</label><select id="ll"><option>Short</option><option selected>Medium</option></select></div></div>
+<div class="row"><button class="pri" id="lg">Generate with AI</button><button id="lq">Quick template</button></div>
+<label for="lo">Your letter (editable)</label><textarea id="lo" style="min-height:260px"></textarea>
+<div class="row"><button id="lcp">Copy</button><button id="ldl">Download .txt</button><span class="mu" id="lw" role="status" style="align-self:center"></span></div></div></div></section>
+
+<section id="agents"><div class="w">
+<h2>Four agents, one pipeline</h2><p class="mu">Deep AI mode runs these in order on your deployment.</p>
+<div class="st">
+<div class="card"><h3>Parse and inspect</h3><p class="mu">Extracts skills, experience and education from text, PDF or photo, and checks layout with a vision model.</p></div>
+<div class="card"><h3>Retrieve</h3><p class="mu">RAG over an ATS and role knowledge base finds the guidelines that apply to your target role.</p></div>
+<div class="card"><h3>Score</h3><p class="mu">Six categories scored against the job description, citing the guidelines used.</p></div>
+<div class="card"><h3>Rewrite and critique</h3><p class="mu">Rewrites bullets and a cover letter using only your facts, then flags fabrication risk.</p></div>
+</div></div></section>
+
+<section id="features"><div class="w">
+<h2>What you get</h2>
+<div class="g3">
+<div class="card"><h3>Live scoring</h3><p class="mu">Runs in your browser as you type: keywords, metrics, verbs, sections, contact details and format risks.</p></div>
+<div class="card"><h3>Job description match</h3><p class="mu">Pulls the terms that matter from any posting and shows what your resume lacks.</p></div>
+<div class="card"><h3>Role skill maps</h3><p class="mu">AI/ML, GenAI, data, software and cloud roles each have their own expected skills.</p></div>
+<div class="card"><h3>Vision layout check</h3><p class="mu">Deep AI flags tables, columns, photos and dense pages that break ATS parsers.</p></div>
+<div class="card"><h3>Rewrite and cover letter</h3><p class="mu">Before and after bullets, plus a short letter tied to the posting.</p></div>
+<div class="card"><h3>Interview prep and history</h3><p class="mu">Likely questions with tips, and a local history so you can track progress.</p></div>
+</div></div></section>
+
+<section id="privacy"><div class="w"><h2>Privacy</h2>
+<p class="mu" style="max-width:62ch">The live score runs entirely in your browser. Nothing is uploaded until you press Deep AI analysis, which sends your resume to the site’s server and then to Google Gemini for processing. History is saved only on this device.</p></div></section>
+
+<section id="faq"><div class="w"><h2>Questions</h2>
+<details><summary>Is the score the same as a real company’s ATS?</summary><p class="mu">No. Every company configures its own system. The score estimates how well your resume matches the posting and how safely it parses.</p></details>
+<details><summary>Why is my score low with no job description?</summary><p class="mu">Without a posting, matching uses the role’s typical skills. Paste a real job description for a sharper result.</p></details>
+<details><summary>Does Deep AI invent achievements?</summary><p class="mu">It is instructed to use only facts in your resume, uses placeholders for missing numbers, and reports a fabrication risk. Always review before sending.</p></details>
+<details><summary>Can I upload a Word file?</summary><p class="mu">Yes. .docx files are read in your browser. Save old .doc files as .docx or PDF first.</p></details>
+</div></section>
+
+<section id="contact"><div class="w"><h2>Contact</h2><p class="mu">Found a bug or have feedback? This opens your email app.</p>
+<div class="card" style="max-width:560px">
+<label for="cn">Your name</label><input type="text" id="cn">
+<label for="cm">Message</label><textarea id="cm" style="min-height:100px"></textarea>
+<div class="row"><button class="pri" id="cs">Send message</button></div></div></div></section>
+</main>
+
+<footer><div class="w fg">
+<div><div class="logo" style="font:700 18px Georgia,serif">Resume Reviewer <b style="color:var(--am)">Pro</b></div><p class="mu" style="margin-top:8px">Recruiter-grade resume intelligence. Built by Nikhil Chary Sriramoju.</p><p class="mu" style="font-size:13px">© 2026 Nikhil Chary Sriramoju</p></div>
+<div><h3>Explore</h3><a href="#analyzer">Analyzer</a><a href="#agents">Agents</a><a href="#faq">FAQ</a></div>
+<div><h3>Connect</h3><a href="https://github.com/Nikhil-creat" rel="noopener">GitHub</a><a href="https://in.linkedin.com/in/nikhil-chary-sriramoju-95041b38a" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/nikhil__sriramoju" rel="noopener">Instagram</a><a href="mailto:sriramojunikhil66@gmail.com">Email</a></div>
+</div></footer>
+<div class="toast" id="ts" role="status"></div>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const STOP=new Set("the a an and or of to in for with on at by from as is are be this that will you your we our their it its not have has had can may must should about into over per etc using use used work working years year experience role team strong ability skills skill knowledge good new more also such other than who what when where which including include responsible looking required preferred plus any all they them able".split(" "));
+const ROLES={"AI/ML Engineer":"python,pytorch,tensorflow,scikit-learn,numpy,pandas,docker,fastapi,mlflow,cnn,nlp,model evaluation,deployment,sql,git","GenAI/LLM Engineer":"rag,langchain,langgraph,embeddings,faiss,qdrant,pgvector,prompt,fine-tuning,lora,llm,agents,evaluation,python,fastapi,docker","Data Analyst":"sql,excel,power bi,tableau,python,pandas,statistics,dashboard,visualization,a/b,reporting","Data Engineer":"spark,airflow,dbt,kafka,sql,python,etl,warehouse,delta,aws,pipeline","Software Engineer":"dsa,python,java,javascript,react,node,rest,sql,git,docker,testing,ci/cd,system design","Cloud/DevOps":"linux,docker,kubernetes,terraform,ci/cd,github actions,aws,azure,monitoring,prometheus,grafana"};
+const VERBS=new Set("built designed developed deployed optimized automated trained benchmarked migrated created implemented led improved reduced increased launched analyzed engineered integrated delivered managed architected tested fine-tuned achieved streamlined configured wrote".split(" "));
+const CATS={kw:"Keyword match",im:"Impact and metrics",fm:"ATS format",st:"Structure",rf:"Role fit",cl:"Clarity"};
+const SAMPLE="Nikhil Chary Sriramoju\nsriramojunikhil66@gmail.com | +91 6300556301 | github.com/Nikhil-creat\n\nSummary\nFinal-year CSE student building AI and data projects.\n\nSkills\nPython, SQL, Pandas, scikit-learn, Docker, FastAPI, Git\n\nExperience\nMachine Learning Engineer Intern, Yuva Intern\n- Built a classification model and improved accuracy to 91%\n- Worked on data cleaning for 20,000 records\n\nProjects\nResume Reviewer\n- Developed a Next.js app that scores resumes using Gemini\n- Responsible for deployment on Vercel\n\nEducation\nB.Tech, Computer Science and Engineering, 2023-2027\n\nCertifications\nIBM SkillsBuild AI Fundamentals";
+let last=null,fileData=null,tm;
+const store={get(){try{return JSON.parse(localStorage.getItem("rrp")||"[]")}catch{return[]}},set(v){try{localStorage.setItem("rrp",JSON.stringify(v))}catch{}}};
+function toast(m){const t=$("ts");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
+function tok(s){return s.toLowerCase().match(/[a-z][a-z0-9+#.\/-]{1,}/g)||[]}
+function analyze(t,jd,role){
+ const low=t.toLowerCase(),words=tok(t).length,lines=t.split(/\n/).map(x=>x.trim()).filter(Boolean);
+ const bl=lines.filter(l=>/^[-•*▪●]/.test(l)||l.split(" ").length>7).map(l=>l.replace(/^[-•*▪●]\s*/,""));
+ const met=bl.filter(l=>/\d+(\.\d+)?\s?(%|x|k|m\b|\+)|\b\d{2,}\b/i.test(l)).length;
+ const vb=bl.filter(l=>VERBS.has((l.split(/\s/)[0]||"").toLowerCase())).length;
+ const weak=(low.match(/responsible for|worked on|helped with|duties include|hard.?working|team player/g)||[]);
+ const SEC={Summary:/^(summary|objective|profile)/i,Skills:/^skills/i,Experience:/^(experience|internship|work)/i,Projects:/^projects/i,Education:/^education/i,Certifications:/^certif/i};
+ const found=Object.keys(SEC).filter(k=>lines.some(l=>l.length<40&&SEC[k].test(l)));
+ const has={email:/[\w.+-]+@[\w-]+\.[\w.]+/.test(t),phone:/\+?\d[\d\s-]{8,}\d/.test(t),link:/linkedin\.com|github\.com/i.test(t)};
+ let r=role;if(!ROLES[r]){let b=-1;for(const k in ROLES){const h=ROLES[k].split(",").filter(x=>low.includes(x)).length;if(h>b){b=h;r=k}}}
+ const rt=ROLES[r].split(","),rh=rt.filter(x=>low.includes(x));
+ let kws=[];if(jd.trim()){const f={};tok(jd).forEach(w=>{if(w.length>2&&!STOP.has(w))f[w]=(f[w]||0)+1});kws=Object.entries(f).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,20).map(x=>x[0])}else kws=rt;
+ const set=new Set(tok(t)),mk=kws.filter(k=>set.has(k)||low.includes(k)),xk=kws.filter(k=>!mk.includes(k));
+ const sc={};
+ sc.kw=kws.length?mk.length/kws.length*100:0;
+ sc.im=Math.min(100,(bl.length?met/bl.length:0)*170);
+ let f=100;if(!has.email)f-=15;if(!has.phone)f-=10;if(!has.link)f-=8;if(lines.filter(l=>/\||\t/.test(l)).length>8)f-=15;if(words>900)f-=12;if(words<150)f-=12;f-=Math.min(20,weak.length*6);sc.fm=Math.max(0,f);
+ sc.st=found.length/6*100;sc.rf=rh.length/rt.length*100*1.4;
+ const avg=bl.length?bl.reduce((a,l)=>a+l.split(" ").length,0)/bl.length:0;
+ sc.cl=Math.max(0,Math.min(100,(bl.length?vb/bl.length*80:0)+(avg>=10&&avg<=28?25:5)-weak.length*5));
+ for(const k in sc)sc[k]=Math.round(Math.max(0,Math.min(100,sc[k])));
+ const overall=Math.round(sc.kw*.25+sc.im*.2+sc.fm*.15+sc.st*.15+sc.rf*.15+sc.cl*.1);
+ const fx=[];
+ if(!has.email)fx.push(["h","Add a professional email address at the top."]);
+ if(!has.phone)fx.push(["h","Add a phone number."]);
+ if(!has.link)fx.push(["m","Add your GitHub or LinkedIn link."]);
+ const miss=Object.keys(SEC).filter(k=>!found.includes(k));if(miss.length)fx.push([miss.includes("Skills")||miss.includes("Experience")?"h":"m","Missing sections: "+miss.join(", ")+"."]);
+ if(bl.length&&met/bl.length<.4)fx.push(["h","Only "+met+" of "+bl.length+" bullets show numbers. Add scale, accuracy, users, rows or time saved."]);
+ if(weak.length)fx.push(["m","Replace weak phrases ("+[...new Set(weak)].join(", ")+") with action verbs like built, deployed, optimized."]);
+ if(bl.length&&vb/bl.length<.6)fx.push(["m","Start more bullets with a strong action verb."]);
+ if(xk.length)fx.push(["h","Work in these terms where they are true: "+xk.slice(0,8).join(", ")+"."]);
+ if(words>900)fx.push(["m","Resume is long ("+words+" words). Aim for one page if you are early in your career."]);
+ if(words<150)fx.push(["m","Resume looks thin ("+words+" words). Add projects and detail."]);
+ if(!fx.length)fx.push(["l","No major issues found. Run Deep AI analysis for a rewrite."]);
+ return{overall,sc,mk,xk,fx,role:r,words};
+}
+function paint(a){
+ last=a;$("sc").textContent=a.overall;$("rg").style.strokeDashoffset=289-289*a.overall/100;
+ $("rg").style.stroke=a.overall>74?"var(--gn)":a.overall>49?"var(--am)":"var(--rd)";
+ $("vd").textContent=(a.overall>74?"Strong":a.overall>49?"Decent, needs work":"Needs significant work")+" for "+a.role;
+ $("cats").innerHTML=Object.keys(CATS).map(k=>`<div class="rw"><span>${CATS[k]}</span><span>${a.sc[k]}</span></div><div class="bar"><i style="width:${a.sc[k]}%;background:${a.sc[k]>74?"var(--gn)":a.sc[k]>49?"var(--am)":"var(--rd)"}"></i></div>`).join("");
+ $("kw").innerHTML=a.mk.map(k=>`<span class="chip ok">${esc(k)}</span>`).join("")+a.xk.map(k=>`<button class="chip no" data-k="${esc(k)}">${esc(k)}</button>`).join("")||"No keywords yet.";
+ $("fx").innerHTML=a.fx.map(f=>`<div class="fx ${f[0]}">${esc(f[1])}</div>`).join("");
+}
+function live(){const t=$("rs").value;if(t.trim().length<60)return;paint(analyze(t,$("jd").value,$("ro").value))}
+function sched(){clearTimeout(tm);tm=setTimeout(live,400)}
+function hist(){const h=store.get();$("hs").innerHTML=h.length?h.map(x=>`<div><span>${esc(x.d)} · ${esc(x.r)}</span><b>${x.s}/100</b></div>`).join(""):"No scans yet."}
+$("rs").oninput=sched;$("jd").oninput=sched;$("ro").onchange=live;
+$("run").onclick=()=>{const t=$("rs").value;if(t.trim().length<60){$("msg").textContent="Paste at least a few lines of resume text first.";return}
+ $("msg").textContent="";const a=analyze(t,$("jd").value,$("ro").value);paint(a);
+ const h=store.get();h.unshift({d:new Date().toLocaleDateString(),r:a.role,s:a.overall});store.set(h.slice(0,10));hist();$("results").scrollIntoView({behavior:"smooth",block:"start"})};
+$("smp").onclick=()=>{$("rs").value=SAMPLE;live();toast("Sample loaded")};
+$("clr").onclick=()=>{$("rs").value="";$("jd").value="";fileData=null;$("fl").value="";$("sc").textContent="–";$("rg").style.strokeDashoffset=289;$("vd").textContent="Start typing to see your score.";$("cats").innerHTML="";$("kw").textContent="Matched and missing keywords appear here.";$("fx").textContent="Specific fixes appear here.";$("aiout").hidden=true;last=null};
+$("hc").onclick=()=>{store.set([]);hist();toast("History cleared")};
+$("fl").onchange=e=>{const f=e.target.files[0];if(!f)return;
+ if(f.size>4e6){$("msg").textContent="File is over 4 MB.";return}
+ if(f.type==="text/plain"||/\.txt$/i.test(f.name)){const r=new FileReader();r.onload=()=>{$("rs").value=r.result;live();toast("File loaded")};r.readAsText(f)}
+ else if(/\.docx$/i.test(f.name)){docx(f).then(x=>{$("rs").value=x;live();toast("Word file loaded")}).catch(()=>{$("msg").textContent="Could not read that .docx. Paste the text instead."})}
+ else if(/pdf|image/.test(f.type)){const r=new FileReader();r.onload=()=>{fileData={type:f.type,data:String(r.result).split(",")[1]};$("msg").textContent=f.name+" attached. Press Deep AI analysis to read it."};r.readAsDataURL(f)}
+ else $("msg").textContent="Use .docx, .txt, PDF or an image."};
+$("kw").onclick=e=>{const k=e.target.dataset?.k;if(k){navigator.clipboard?.writeText(k);toast("Copied “"+k+"”")}};
+$("cp").onclick=()=>{if(!last){toast("Run an analysis first");return}
+ const a=last;navigator.clipboard?.writeText(`Resume score: ${a.overall}/100 (${a.role})\n`+Object.keys(CATS).map(k=>`${CATS[k]}: ${a.sc[k]}`).join("\n")+"\nMissing: "+a.xk.join(", ")+"\nFixes:\n- "+a.fx.map(f=>f[1]).join("\n- "));toast("Report copied")};
+$("pr").onclick=()=>window.print();
+$("ai").onclick=async()=>{
+ const t=$("rs").value;if(t.trim().length<60&&!fileData){$("msg").textContent="Add resume text or attach a PDF or image first.";return}
+ const box=document.getElementById("ai");
+ $("msg").textContent="Agents are working. This takes 20 to 40 seconds.";$("ai").disabled=true;
+ try{
+  const r=await fetch("/api/agent",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:t,jd:$("jd").value,role:$("ro").value==="Auto-detect"?"auto":$("ro").value,file:fileData})});
+  const j=await r.json();if(!r.ok)throw new Error(j.error||"Request failed");
+  const o=j.out||{},s=j.score||{};
+  const rp=document.getElementById("aiout");
+  rp.hidden=false;
+  rp.innerHTML=`<h2>Deep AI report: ${esc(s.overall)}/100</h2><p>${esc(s.verdict)}</p><div class="row"><button id="cpr">Copy ATS resume</button></div><h3>Summary rewrite</h3><p>${esc(o.summary)}</p><h3>Bullet rewrites</h3>`+(o.rewritten_bullets||[]).map(b=>`<p><span class="mu">Before: ${esc(b.before)}</span><br>After: ${esc(b.after)}</p>`).join("")+`<h3>Cover letter</h3><pre>${esc(o.cover_letter)}</pre><h3>Interview questions</h3>`+(o.interview_questions||[]).map(q=>`<p><b>${esc(q.q)}</b><br><span class="mu">${esc(q.tip)}</span></p>`).join("")+`<h3>Agent trace</h3>`+(j.trace||[]).map(x=>`<p class="mu">${esc(x.agent)}: ${esc(x.note)}</p>`).join("")+`<p class="mu">Critic: fabrication risk ${esc(o.critic?.fabrication_risk)}. ${esc((o.critic?.flags||[]).join(" "))}</p>`;
+  window.__ats=o.ats_resume_markdown||"";$("cpr").onclick=()=>{navigator.clipboard?.writeText(window.__ats);toast("ATS resume copied")};$("msg").textContent="";rp.scrollIntoView({behavior:"smooth"});
+ }catch(e){$("msg").textContent="Deep AI is available on the deployed site (needs the /api/agent route and GOOGLE_API_KEY). "+(e.message||"")}
+ $("ai").disabled=false};
+$("cs").onclick=()=>{const m=$("cm").value.trim();if(!m){toast("Write a message first");return}
+ location.href="mailto:sriramojunikhil66@gmail.com?subject="+encodeURIComponent("Resume Reviewer Pro feedback from "+($("cn").value||"a user"))+"&body="+encodeURIComponent(m)};
+$("mb").onclick=()=>{const n=$("nav").classList.toggle("open");$("mb").setAttribute("aria-expanded",n)};
+$("nav").onclick=e=>{if(e.target.tagName==="A")$("nav").classList.remove("open")};
+$("th").onclick=()=>{const d=document.documentElement,dark=getComputedStyle(d).colorScheme==="dark";d.setAttribute("data-theme",dark?"light":"dark")};
+async function docx(f){const b=new Uint8Array(await f.arrayBuffer()),v=new DataView(b.buffer);let e=b.length-22;while(e>=0&&v.getUint32(e,true)!==0x06054b50)e--;let p=v.getUint32(e+16,true);const n=v.getUint16(e+10,true);
+ for(let i=0;i<n;i++){const m=v.getUint16(p+10,true),cs=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),lo=v.getUint32(p+42,true),nm=new TextDecoder().decode(b.subarray(p+46,p+46+nl));
+  if(nm==="word/document.xml"){const s=lo+30+v.getUint16(lo+26,true)+v.getUint16(lo+28,true),d=b.subarray(s,s+cs);const raw=m===0?d:new Uint8Array(await new Response(new Blob([d]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer());
+   return new TextDecoder().decode(raw).replace(/<\/w:p>/g,"\n").replace(/<w:tab\/>/g,"\t").replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/\n{3,}/g,"\n\n").trim()}
+  p+=46+nl+xl+cl}throw new Error("no document")}
+function save(name,txt){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/plain"}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+$("dl").onclick=()=>{if(!last){toast("Run an analysis first");return}const a=last;save("resume-report.txt",`Resume score: ${a.overall}/100 (${a.role})\n`+Object.keys(CATS).map(k=>`${CATS[k]}: ${a.sc[k]}`).join("\n")+"\nMissing keywords: "+a.xk.join(", ")+"\nFixes:\n- "+a.fx.map(f=>f[1]).join("\n- "))};
+const val=id=>$(id).value.trim(),cnt=()=>{$("lw").textContent=$("lo").value.split(/\s+/).filter(Boolean).length+" words"};
+$("lo").oninput=cnt;
+$("lq").onclick=()=>{const t=$("rs").value;if(t.trim().length<60){$("lw").textContent="Add your resume text first.";return}
+ const a=analyze(t,$("jd").value,$("ro").value),name=(t.split("\n").find(l=>l.trim())||"").trim().slice(0,60),co=val("lc")||"your company",ti=val("lr")||a.role,sk=a.mk.slice(0,4).join(", ")||"the skills listed in my resume";
+ const ev=t.split("\n").map(l=>l.replace(/^[-•*▪●]\s*/,"").trim()).filter(l=>l.split(" ").length>5&&/\d/.test(l)).slice(0,$("ll").value==="Short"?1:2),w=$("lt").value;
+ const op=w==="Warm"?"I was genuinely excited to see":w==="Confident"?"I am confident I can contribute as":"I am writing to apply for";
+ const P=[`Dear ${val("lm")||"Hiring Manager"},`,`${op} the ${ti} role at ${co}. My background includes hands-on work with ${sk}, which lines up with what the role asks for.`,ev.length?`Some of my recent work: ${ev.join("; ")}.`:"",`I would welcome the chance to discuss how I can contribute to ${co}. Thank you for your time and consideration.`,`Sincerely,\n${name}`].filter(Boolean);
+ $("lo").value=P.join("\n\n");cnt();toast("Template ready")};
+$("lg").onclick=async()=>{const t=$("rs").value;if(t.trim().length<60&&!fileData){$("lw").textContent="Add your resume first.";return}
+ $("lg").disabled=true;$("lw").textContent="Writing…";
+ try{const r=await fetch("/api/agent",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({task:"letter",text:t,jd:$("jd").value,company:val("lc"),role:val("lr"),manager:val("lm"),tone:$("lt").value,length:$("ll").value,file:fileData})});
+  const j=await r.json();if(!r.ok)throw new Error(j.error||"Request failed");$("lo").value=j.letter||"";cnt();toast("Letter ready")}
+ catch(e){$("lw").textContent="AI letters run on the deployed site. Use Quick template here. "+(e.message||"")}
+ $("lg").disabled=false};
+$("lcp").onclick=()=>{navigator.clipboard?.writeText($("lo").value);toast("Letter copied")};
+$("ldl").onclick=()=>{if(!$("lo").value.trim()){toast("Generate a letter first");return}save("cover-letter.txt",$("lo").value)};
+hist();
+</script>
+</body>
+</html>
