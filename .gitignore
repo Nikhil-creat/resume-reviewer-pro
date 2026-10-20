@@ -1,9 +1,4 @@
-node_modules/
-.next/
-out/
-.env*
-!.env.local.example
-__pycache__/
-*.pt
-*.onnx
+node_modules
+.next
+.env.local
 .DS_Store

@@ -1,63 +1,59 @@
-# Resume Reviewer Pro v2
+# Resume Reviewer Pro — Deploy Guide
 
-**Agentic ATS resume analyzer and builder.** Upload a resume, get an explainable 100-point ATS score, a truthful agent-rewritten version, and ATS-safe PDF and DOCX downloads. Next.js 14, RAG, a CNN layout service, Docker, and Groq or Gemini for the rewrite agent.
+## 1. Get a Google Gemini API key (free)
+- Go to https://aistudio.google.com/apikey
+- Sign in with your Google account
+- Click "Create API Key"
+- Copy it (you'll need it in step 4)
 
-![version](https://img.shields.io/badge/version-2.0.0-34d399) ![license](https://img.shields.io/badge/license-MIT-818cf8)
+This uses Google's free tier — no credit card required. Free tier has rate
+limits (requests per minute/day), which is fine for personal/testing use.
 
-## What is new in v2
-| Area | v1 | v2 |
-|---|---|---|
-| Scoring | LLM opinion | **Deterministic 100-point rubric** (9 categories, exact points per fix, reproducible) |
-| Rewrite | one LLM call | **Agent loop**: plan, rewrite, guard, verify, iterate; LLM is only a proposer |
-| Honesty | none | **No-fabrication guard**: unsupported numbers, skills and links are stripped |
-| Knowledge | prompt only | **RAG** over 15 role profiles, ATS guidelines and a 150-skill ontology |
-| Layout | not checked | **CNN + heuristics** detect columns, tables, graphics, margins, scanned PDFs |
-| Output | text | **ATS-safe PDF and DOCX** (single column, real text), TXT, JSON, editable preview with re-scoring |
-| Extras | cover letter | cover letter, LinkedIn headline and about, interview questions, JD tailoring, score history |
-| Providers | Gemini | **Groq (Llama 3.3 70B) or Gemini**, server key or your own key, offline rules mode |
-| Ops | Vercel | Vercel, Docker Compose, CI, 23 engine tests + CNN service tests |
+## 2. Push this project to GitHub
+(Skip if you've already done this.)
+```
+git init
+git add .
+git commit -m "Resume Reviewer Pro"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
+```
 
-## Why it can say "95+" and still be honest
-The score comes from an open rubric (`docs/SCORING.md`), not from a vendor ATS. The agent only rewrites what is true. If a resume lacks real metrics or confirmed skills, the app tells you exactly which details to add instead of inventing them.
+## 3. Deploy on Vercel
+- Go to https://vercel.com → sign in with GitHub
+- Click "Add New Project" → import the repo you just pushed
+- Framework preset: Next.js (auto-detected, leave as is)
+- Don't click Deploy yet — go to step 4 first
 
-## Architecture
-See `docs/ARCHITECTURE.md`. Summary: parsing, scoring, RAG, layout heuristics and exports run in the browser; only text sent for AI rewriting goes through `/api/llm` to Groq or Gemini; `/api/layout` proxies page images to the optional CNN service.
+## 4. Add your API key
+- On the "Configure Project" screen (or later in Project → Settings → Environment Variables):
+  - Name: `GOOGLE_API_KEY`
+  - Value: the key you copied in step 1
+  - Apply to: Production, Preview, Development (all)
+- Click Deploy (or, if already deployed, go to Deployments → "..." → Redeploy)
 
-## Run it
-**Vercel (existing deployment):** push to `main`; set env vars `GOOGLE_API_KEY` and/or `GROQ_API_KEY` (optional: visitors can paste their own key in AI settings).
+## 5. Done
+- Vercel gives you a live URL like `your-project.vercel.app`
+- Open it, upload a resume (PDF/DOCX/JPG/PNG) or paste text, add a job description, and run the scan
 
-**Local:**
-```bash
+## Local testing (optional, before deploying)
+```
 npm install
-cp .env.local.example .env.local   # add a key (free: console.groq.com/keys or aistudio.google.com/apikey)
-npm run dev                         # http://localhost:3000
-npm test                            # 23 engine tests
+cp .env.local.example .env.local
+# paste your key into .env.local
+npm run dev
 ```
+Then open http://localhost:3000
 
-**Docker (web + CNN layout service):**
-```bash
-docker compose up --build           # http://localhost:3000
-```
-The CNN image trains on synthetic resume pages while building and exports ONNX for inference.
+## Notes
+- Model used: `gemini-3.6-flash`. You can change this in `app/api/analyze/route.js` if needed.
+- Your API key stays server-side (inside `app/api/analyze/route.js`) — it is never exposed to the browser.
+- Free tier has rate limits — if you hit them, wait a bit or check quota at https://aistudio.google.com
 
-## Configuration
-| Variable | Purpose |
-|---|---|
-| `GOOGLE_API_KEY` | Gemini key (server side) |
-| `GROQ_API_KEY` | Groq key (server side) |
-| `GEMINI_MODEL`, `GROQ_MODEL` | override models (defaults `gemini-2.5-flash`, `llama-3.3-70b-versatile`) |
-| `CNN_SERVICE_URL` | URL of `cnn-service`; empty = heuristics only |
+## 👤 Author
 
-## Repository map
-`app/` UI + API routes | `lib/` engine: `parser`, `ats`, `rag`, `kb`, `resume`, `guard`, `agent`, `layout`, `extract`, `export`, `llm` | `cnn-service/` FastAPI + PyTorch CNN | `tests/` | `docs/`
-
-## Limitations
-- Not affiliated with any ATS vendor; scores are explainable estimates.
-- The CNN is trained on synthetic pages; the heuristics remain the safety net. Fine-tune on real resumes for production.
-- PDF text extraction follows reading order as an ATS would, so two-column resumes will look scrambled by design.
-- Browser libraries (pdf.js, mammoth, tesseract.js, jsPDF, JSZip) load from jsDelivr on demand.
-
-## Author
-**DESIGNED AND DEVELOPED BY NIKHIL CHARY SRIRAMOJU** · [GitHub](https://github.com/Nikhil-creat) · [LinkedIn](https://in.linkedin.com/in/nikhil-chary-sriramoju-95041b38a)
-
-MIT licensed.
+**NIKHIL CHARY SRIRAMOJU**
+- GitHub: [@Nikhil-creat](https://github.com/Nikhil-creat)
+- LinkedIn: [nikhil-chary-sriramoju](https://in.linkedin.com/in/nikhil-chary-sriramoju-95041b38a)
+- Instagram: [@nikhil__sriramoju](https://www.instagram.com/nikhil__sriramoju?stkn=MTFxdDZobmJtb2RoaA==)
