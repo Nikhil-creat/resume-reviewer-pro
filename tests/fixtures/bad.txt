@@ -1,0 +1,10 @@
+Rahul Kumar
+Objective
+I am a hard-working team player looking for a job where I can grow. Date of Birth: 12/05/2002. Marital status: single.
+
+Work Experience
+Responsible for helping with testing of the software. Worked on many things in the team.
+I did the website for the company using Python, SQL and Git, and tested it with Selenium.
+
+Education
+BTech 2024
