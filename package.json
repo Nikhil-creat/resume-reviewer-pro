@@ -1,17 +1,24 @@
 {
   "name": "resume-reviewer-pro",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
+  "description": "Agentic AI resume analyzer: ATS score, keyword gaps, 95%+ rewrite, cover letter, RAG assistant, CNN layout check. Next.js + Groq + Gemini.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test \"tests/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=18.18"
   },
   "dependencies": {
+    "lucide-react": "^0.383.0",
+    "mammoth": "^1.8.0",
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "mammoth": "^1.8.0",
-    "lucide-react": "^0.383.0"
+    "unpdf": "^0.12.1"
   }
 }

@@ -1,0 +1,19 @@
+Asha Verma
+asha.verma@example.com | 9876543210 | Hyderabad, Telangana
+
+SUMMARY
+Final-year B.Tech CSE student interested in data analytics and machine learning.
+
+SKILLS
+Python, pandas, SQL, Excel, Power BI, scikit-learn, Git
+
+PROJECTS
+- Built a sales dashboard in Power BI used by 40 users, cutting reporting time by 30%
+- Developed a customer churn model with scikit-learn reaching 0.86 AUC
+- Worked on cleaning a 50,000-row dataset with pandas
+
+EDUCATION
+B.Tech Computer Science and Engineering, 2023-2027
+
+CERTIFICATIONS
+- Data Analytics Job Simulation, 2025

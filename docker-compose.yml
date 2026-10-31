@@ -1,0 +1,22 @@
+# docker compose up --build        → http://localhost:3000
+# Put your keys in .env.local (cp .env.local.example .env.local). With no keys the app runs in offline mode.
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      CNN_SERVICE_URL: http://cnn:8000
+    depends_on:
+      cnn:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cnn:
+    build: ./cnn-service
+    expose:
+      - "8000"          # internal only — not published to the host
+    restart: unless-stopped
